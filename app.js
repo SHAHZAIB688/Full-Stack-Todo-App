@@ -12,9 +12,11 @@ ConnectDB()
 app.use(passport.initialize())
 app.use(checkUser)
 app.use(express.json())
-app.use(express.static(path.join(__dirname,'public')))
 app.use(express.urlencoded({extended:true}))
 app.set('view engine','ejs')
+app.set('views', path.join(__dirname, 'views'))
+app.use(express.static(path.join(__dirname,'public')))
+
 
 const mainPage = require('./routes/main-route')
 const loginPage = require('./routes/login-route')
