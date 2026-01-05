@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8E62A5',
+                        accent: '#10AEEE'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-gray-100 font-sans">
+    <!-- Navbar -->
+    <nav class="w-full fixed top-0 left-0 z-50 bg-primary shadow-md">
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+            <a href="/" class="text-3xl font-serif font-bold text-white">TODO APP</a>
+            <div class="space-x-4">
+                <%if(user){%>
+                    <a class="px-5 py-2 rounded-md bg-white text-primary font-semibold hover:bg-accent hover:text-white transition-all" href="/profile">Profile</a>
+                    <a class="px-5 py-2 rounded-md bg-white text-primary font-semibold hover:bg-accent hover:text-white transition-all" href="/logout">Logout</a>
+                <%}else{%>
+                    <a href="/login"
+                        class="px-5 py-2 rounded-md bg-white text-primary font-semibold hover:bg-accent hover:text-white transition-all">Log
+                        In</a>
+                    <a href="/signup"
+                        class="px-5 py-2 rounded-md bg-white text-primary font-semibold hover:bg-accent hover:text-white transition-all">Sign
+                        Up</a>
+                <%} %>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative w-full min-h-screen flex items-center justify-center">
+        <img class="absolute w-full h-full object-cover opacity-50"
+            src="/images/img.jpg"
+            alt="Todo Background">
+        <div class="relative text-center px-4 md:px-0 max-w-3xl">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-lg">
+                Take control of your day with our Todo App
+            </h1>
+            <p class="text-lg md:text-xl text-white mb-8 drop-shadow-md">
+                Plan your tasks, set priorities, track your progress, and achieve your goals efficiently without
+                missing a single deadline.
+            </p>
+            <div class="space-x-4">
+                <%if(user){%>
+                    <a href="/profile" class="px-6 py-3 bg-white text-primary font-semibold rounded-md hover:bg-accent hover:text-white transition-all">Profile</a>
+                    <a href="/features" class="px-6 py-3 bg-white text-primary font-semibold rounded-md hover:bg-accent hover:text-white transition-all">Learn
+                    More</a>
+                <%}else{%>
+                    <a href="/signup"
+                        class="px-6 py-3 bg-accent text-white font-semibold rounded-md hover:bg-white hover:text-accent transition-all">Get
+                        Started</a>
+                    <a href="/features"
+                        class="px-6 py-3 bg-white text-primary font-semibold rounded-md hover:bg-accent hover:text-white transition-all">Learn
+                        More</a>
+                <%}%>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-gray-100">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-12">Why Choose Our Todo App?</h2>
+            <div class="grid md:grid-cols-3 gap-10 px-4">
+                <div class="bg-white p-6 rounded-lg shadow hover:scale-105 transform transition-all">
+                    <h3 class="text-xl font-semibold mb-4">Easy Task Management</h3>
+                    <p class="text-gray-600">Add, edit, and track your tasks in one place with a simple, clean interface.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow hover:scale-105 transform transition-all">
+                    <h3 class="text-xl font-semibold mb-4">Stay Productive</h3>
+                    <p class="text-gray-600">Set priorities, reminders, and deadlines to keep your day on track.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow hover:scale-105 transform transition-all">
+                    <h3 class="text-xl font-semibold mb-4">Track Progress</h3>
+                    <p class="text-gray-600">Visualize your progress and complete tasks efficiently with our easy tracking tools.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-primary text-white text-center">
+        <%if(user){%>
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to organize your day?</h2>
+            <a class="px-5 py-2 rounded-md bg-accent text-white font-semibold hover:bg-white hover:text-accent transition-all" href="/profile">Profile</a>
+            <a class="px-5 py-2 rounded-md bg-accent text-white font-semibold hover:bg-white hover:text-accent transition-all" href="/logout">Logout</a>
+        <%}else{ %>
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to organize your day?</h2>
+            <a href="/signup"
+                class="px-8 py-4 bg-accent font-semibold rounded-md hover:bg-white hover:text-accent transition-all">Get
+                Started Now</a>
+        <%}%>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-6 mt-10">
+        <div class="max-w-7xl mx-auto text-center">
+            <p>&copy; 2026 Todo App. All rights reserved.</p>
+            <p class="text-sm text-gray-400 mt-2">Designed with ❤️ by Shahzaib</p>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Todo App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8E62A5',
+                        accent: '#10AEEE'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-gray-100 font-sans min-h-screen">
+    <!-- Navbar -->
+    <nav class="w-full bg-primary text-white flex justify-between items-center px-6 py-4 shadow-md">
+        <a href="/" class="text-3xl font-serif font-bold">TODO APP</a>
+        <div class="space-x-4">
+            <a class="px-5 py-2 rounded-md bg-white text-primary font-semibold hover:bg-accent hover:text-white transition-all" href="/">Home</a>
+            <a class="px-5 py-2 rounded-md bg-white text-primary font-semibold hover:bg-accent hover:text-white transition-all" href="/logout">Logout</a>
+        </div>
+    </nav>
+    <!-- Main Container -->
+    <div class="max-w-4xl mx-auto px-4 py-10">
+        <h1 class="text-4xl font-bold text-gray-800 mb-6 text-center">Welcome!
+            <%= user?.fullname || user?.username || "User" %>
+        </h1>
+        <!-- Add Task Form -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-10">
+            <h2 class="text-xl font-semibold mb-4">Add a New Task</h2>
+            <form method="post" action="/profile/create" id="taskForm" class="flex gap-4">
+                <input name="title" type="text" id="taskInput" placeholder="Enter your task"
+                    class="flex-1 px-4 py-3 border rounded-lg outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all">
+                <button type="submit"
+                    class="bg-accent text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary transition-all">Add</button>
+            </form>
+        </div>
+        <!-- Tasks List -->
+        <div class="bg-white rounded-xl shadow-lg p-6">
+            <h2 class="text-2xl font-bold mb-3 text-gray-800">Your Tasks</h2>
+            <ul class="space-y-4">
+                <% [...user.todos].reverse().forEach((todo)=>{ %>
+                    <li class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
+                        <!-- Header -->
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="text-sm font-semibold text-primary">
+                                <%= user.fullname %>
+                            </h3>
+                            <!-- From Uiverse.io by Shubh0408 -->
+                            <label class="relative flex w-40 cursor-pointer overflow-hidden p-2 scale-75">
+                                <input type="checkbox" class="peer hidden"
+                                    onchange="window.location.href='/status/<%= todo._id %>'" <%=todo.status ? 'checked'
+                                    : '' %>/>
+
+                                <!-- Completed -->
+                                <div class="absolute right-full z-10 flex h-12 w-full skew-x-12 items-center justify-center text-base
+                                transition-all duration-500 peer-checked:right-2">
+                                    <span class="-skew-x-12 whitespace-nowrap">Completed</span>
+
+                                </div>
+
+                                <!-- Center Box -->
+                                <div class="h-12 w-full -skew-x-12 border border-black transition-all duration-500
+                                peer-checked:skew-x-12 peer-checked:bg-green-500">
+                                </div>
+
+                                <!-- Pending -->
+                                <div class="absolute left-2 flex h-12 w-full -skew-x-12 items-center justify-center text-base
+                                transition-all duration-500 peer-checked:-left-full">
+                                    <span class="skew-x-12 whitespace-nowrap">Pending</span>
+
+                                </div>
+                            </label>
+
+
+                        </div>
+
+                        <!-- Todo text -->
+                        <p class="text-gray-700 text-sm mb-3">
+                            <%= todo.todo_title %>
+                        </p>
+
+                        <!-- Actions -->
+                        <div class="flex gap-4 text-sm">
+                            <a href="/edit/<%= todo._id %>" class="text-blue-600 hover:underline font-medium">
+                                Edit
+                            </a>
+                            <a href="/delete/<%= todo._id %>" class="text-red-600 hover:underline font-medium">
+                                Delete
+                            </a>
+                        </div>
+                    </li>
+                    <% }) %>
+            </ul>
+        </div>
+
+    </div>
+</body>
+
+</html>

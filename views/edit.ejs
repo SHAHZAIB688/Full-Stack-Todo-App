@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Todo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="w-full max-w-md bg-white rounded-xl shadow-lg p-6">
+        <!-- Heading -->
+        <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">
+            Edit Todo
+        </h1>
+        <!-- Edit Form -->
+        <form action="/update/<%= todo._id %>" method="POST" class="space-y-5">
+            <!-- Todo Title -->
+            <div>
+                <label class="block text-sm font-medium text-gray-600 mb-1">
+                    Todo Title
+                </label>
+                <input 
+                    type="text" 
+                    name="todo_title"
+                    value="<%= todo.todo_title %>"
+                    required
+                    class="w-full px-4 py-3 border rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
+                >
+            </div>
+            
+            <!-- Buttons -->
+            <div class="flex gap-4">
+                <button 
+                    type="submit"
+                    class="flex-1 bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
+                >
+                    Update
+                </button>
+                <a 
+                    href="/profile"
+                    class="flex-1 text-center bg-gray-200 text-gray-800 py-3 rounded-lg font-semibold hover:bg-gray-300 transition"
+                >
+                    Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
